@@ -21,8 +21,10 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'SonarQube Connection'
-    scannerMode: 'CLI'
-    configMode: 'file'
+    scannerMode: 'MSBuild'
+    projectKey: 'sonarqubetestproject.projectKey'
+    projectName: 'Sonarqube test project'
+
   
 - task: SonarQubeAnalyze@5
   inputs:
