@@ -13,32 +13,7 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-   variables:
-  - name: SonarQube_ExtraProperties
-    value: |
-      sonar.branch.name=$(Build.SourceBranchName)
-- task: SonarQubePrepare@5
-      displayName: SonarQube Prepare
-      inputs:
-        SonarQube: 'SonarQube'
-        scannerMode: 'MSBuild'
-        projectVersion: '$(Build.BuildNumber)'
-        extraProperties: |
-          sonar.cs.opencover.reportsPaths=$(System.DefaultWorkingDirectory)/**/coverage.opencover.xml
-          sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
-          sonar.exclusions=**/CriiptoSignatures/**/*.*,**/Migrations/**/*.*
-          sonar.test.exclusions=**/AldSigning.Tests/**/*.*
-          sonar.cpd.exclusions=**/CriiptoSignatures/**/*.*,**/Migrations/**/*.*
-          #sonar.coverage.exclusions=**/CriiptoSignatures/**/*.*,**/Migrations/**/*.*,**/ClientApp/**/*.*,**/AldUpload/**/*.*
-          sonar.verbose = true
-          $(SonarQube_ExtraProperties)    
-- task: SonarQubeAnalyze@5
-      displayName: SonarQube Analyze
-- task: SonarQubePublish@5
-      displayName: SonarQube Publish
-      inputs:
-        pollingTimeoutSec: '300'
-        
+
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
