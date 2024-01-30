@@ -13,4 +13,8 @@ trigger:
             repository: $(imageName)
             command: build
             Dockerfile: app/Dockerfile
-            
+            - task: dependency-check-build-task@6
+              inputs:
+                projectName: 'test dep check'
+                scanPath: '/'
+                format: 'HTML, JSON, JUNIT'
